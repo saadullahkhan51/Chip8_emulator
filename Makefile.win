@@ -1,0 +1,31 @@
+# Project: chip_emu
+# Makefile created by Dev-C++ 5.8.3
+
+CPP      = g++.exe -D__DEBUG__
+CC       = gcc.exe -D__DEBUG__
+WINDRES  = windres.exe
+OBJ      = main.o chip8.o
+LINKOBJ  = main.o chip8.o
+LIBS     = -L"D:/Downloads/DC++/DevC++ v5.8.3/Dev-Cpp/MinGW64/lib" -L"D:/Downloads/DC++/DevC++ v5.8.3/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib" -static-libgcc -lopengl32  -lfreeglut  -lglu32 -g3
+INCS     = -I"D:/Downloads/DC++/DevC++ v5.8.3/Dev-Cpp/MinGW64/include" -I"D:/Downloads/DC++/DevC++ v5.8.3/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"D:/Downloads/DC++/DevC++ v5.8.3/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.8.1/include"
+CXXINCS  = -I"D:/Downloads/DC++/DevC++ v5.8.3/Dev-Cpp/MinGW64/include" -I"D:/Downloads/DC++/DevC++ v5.8.3/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"D:/Downloads/DC++/DevC++ v5.8.3/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.8.1/include" -I"D:/Downloads/DC++/DevC++ v5.8.3/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.8.1/include/c++"
+BIN      = chip_emu.exe
+CXXFLAGS = $(CXXINCS) -std=c++11 -g3
+CFLAGS   = $(INCS) -std=c++11 -g3
+RM       = rm.exe -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before $(BIN) all-after
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CPP) $(LINKOBJ) -o $(BIN) $(LIBS)
+
+main.o: main.cpp
+	$(CPP) -c main.cpp -o main.o $(CXXFLAGS)
+
+chip8.o: chip8.cpp
+	$(CPP) -c chip8.cpp -o chip8.o $(CXXFLAGS)
